@@ -8,14 +8,22 @@ import datetime
 #csvファイルの読み込み方を忘れないように　Pandasのデータフレームで読み込まれます
 winner_list = pd.read_csv("winner_list.csv", index_col=0)
 
+#更新日
+last = winner_list.iloc[0]["日付"]
+
 st.write('レイティング　入賞者の検索')
 st.write('注意）羽曳野レイティングのみで、かつ54回（2015年）以降')
-
+st.write('   最終更新日：',last)
 #検索条件入力
-name = st.text_input("名前入力：姓と名の間は半角スペース")
-#team = st.text_input("チーム名入力")
+name = st.text_input("苗字入力")
+name2 = st.text_input("名前入力")
+team = st.text_input("チーム名入力")
 #検索結果
 result = winner_list[winner_list['名前'].str.contains(name)]
+
+result = winner_list[winner_list['名前'].str.contains(name) & winner_list['名前'].str.contains(name2) & winner_list['チーム名'].str.contains(team)]
+
+
 total = len(result)
 a_1_1 = result[(result['クラス'].str.contains('A')) & (result['部'] == 1) & (result['位'] == 1)]
 a_1_2 = result[(result['クラス'].str.contains('A')) & (result['部'] == 1) & (result['位'] == 2)]
