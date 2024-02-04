@@ -20,8 +20,8 @@ name = st.text_input("苗字入力")
 name2 = st.text_input("名前入力")
 team = st.text_input("チーム名入力")
 
-# 入力が変更されたときにCSVファイルに書き込む
-if name or name2 or team:
+# 検索ボタン
+if st.button('検索'):
     timestamp = str(datetime.datetime.now())  # 現在のタイムスタンプを取得
     with open('input.csv', mode='a', newline='') as file:
         writer = csv.writer(file)
