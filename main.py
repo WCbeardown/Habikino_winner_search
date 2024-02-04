@@ -20,12 +20,13 @@ name = st.text_input("苗字入力")
 name2 = st.text_input("名前入力")
 team = st.text_input("チーム名入力")
 
-# ユーザーの入力をCSVファイルに書き込む
-timestamp = str(datetime.datetime.now())  # 現在のタイムスタンプを取得
-with open('input.csv', mode='a', newline='') as file:
-    writer = csv.writer(file)
-    writer.writerow([timestamp, name, name2, team])
-    
+# 入力が変更されたときにCSVファイルに書き込む
+if name or name2 or team:
+    timestamp = str(datetime.datetime.now())  # 現在のタイムスタンプを取得
+    with open('input.csv', mode='a', newline='') as file:
+        writer = csv.writer(file)
+        writer.writerow([timestamp, name, name2, team])
+
 #検索結果
 result = winner_list[winner_list['名前'].str.contains(name)]
 
