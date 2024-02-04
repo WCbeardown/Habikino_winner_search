@@ -23,9 +23,12 @@ team = st.text_input("チーム名入力")
 # 検索ボタン
 if st.button('検索'):
     timestamp = str(datetime.datetime.now())  # 現在のタイムスタンプを取得
-    with open('input.csv', mode='a', newline='') as file:
-        writer = csv.writer(file)
-        writer.writerow([timestamp, name, name2, team])
+    try:
+        with open('input.csv', mode='a', newline='') as file:
+            writer = csv.writer(file)
+            writer.writerow([timestamp, name, name2, team])
+    except Exception as e:
+        st.error(f"ファイルへの書き込み中にエラーが発生しました: {e}")
 
 #検索結果
 result = winner_list[winner_list['名前'].str.contains(name)]
