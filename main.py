@@ -31,9 +31,13 @@ team = st.text_input("チーム名入力")
 #        st.error(f"ファイルへの書き込み中にエラーが発生しました: {e}")
 
 #検索結果
-result = winner_list[winner_list['名前'].str.contains(name)]
+#result = winner_list[winner_list['名前'].str.contains(name)]
+result = winner_list[winner_list['名前'].str.contains(name, na=False)]
 
-result = winner_list[winner_list['名前'].str.contains(name) & winner_list['名前'].str.contains(name2) & winner_list['チーム名'].str.contains(team)]
+#result = winner_list[winner_list['名前'].str.contains(name) & winner_list['名前'].str.contains(name2) & winner_list['チーム名'].str.contains(team)]
+result = winner_list[winner_list['名前'].str.contains(name, na=False) & 
+                     winner_list['名前'].str.contains(name2, na=False) & 
+                     winner_list['チーム名'].str.contains(team, na=False)]
 
 
 total = len(result)
