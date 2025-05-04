@@ -19,9 +19,10 @@ st.write('   最終更新日：', last)
 name = st.text_input("苗字入力")
 name2 = st.text_input("名前入力")
 team = st.text_input("チーム名入力")
+search = st.button("検索")
 
 # 検索ボタン
-if st.button('検索'):
+if search:
     if not name and not name2 and not team:
         st.error("少なくとも1つ以上の検索条件を入力してください。")
     else:
